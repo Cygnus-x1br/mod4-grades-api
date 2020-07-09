@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: 'https://quiet-anchorage-94951.herokuapp.com/',
+    origin: 'https://shielded-inlet-85418.herokuapp.com/',
   })
 );
 
