@@ -33,7 +33,7 @@ const findAll = async (req, res) => {
     : {};
 
   try {
-    const grades = await gradesModel.find({});
+    const grades = await gradesModel.findById({});
     res.send(grades);
     logger.info(`GET /grade`);
   } catch (error) {
@@ -74,7 +74,7 @@ const update = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const grades = await gradesModel.findOneAndUpdate(
+    const grades = await gradesModel.findByIdAndUpdate(
       { _id: req.params.id },
       req.body,
       { new: true }
@@ -95,7 +95,7 @@ const remove = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const grades = await gradesModel.findOneAndDelete({ _id: req.params.id });
+    const grades = await gradesModel.findByIdAndDelete({ _id: req.params.id });
     if (!grades) {
       res.status(404).send('Documento não encontrado na seleção.');
     }
