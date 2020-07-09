@@ -1,4 +1,4 @@
-import { db } from '../models/index.js';
+//import { db } from '../models/index.js';
 import { logger } from '../config/logger.js';
 import { gradesModel } from '../models/grades.js';
 //import { app } from '../routes/gradeRouter.js';

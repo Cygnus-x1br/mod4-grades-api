@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
+//import mongoose from 'mongoose';
 
 import { gradeRouter } from './routes/gradeRouter.js';
 import { logger } from './config/logger.js';
