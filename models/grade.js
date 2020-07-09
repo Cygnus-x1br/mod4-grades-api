@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
  * como valor default, conversão dos cases, etc.
  * !Verificar na documentação do mongoose
  */
-const gradesSchema = mongoose.Schema({
+const gradeSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -33,6 +33,6 @@ const gradesSchema = mongoose.Schema({
 
 /*Define o modelo da coleção. O mongoose por padrão cria uma coleção com student
 no plural. Para forçar a coleção student precisamos colocar o segundo student no model*/
-const gradesModel = mongoose.model('grades', gradesSchema, 'grades');
+const gradeModel = mongoose.model('grade', gradeSchema, 'grade');
 
-export { gradesModel };
+export { gradeModel };

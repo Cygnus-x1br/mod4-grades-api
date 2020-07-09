@@ -1,6 +1,6 @@
 import express from 'express';
 import controller from '../controllers/gradeController.js';
-import { gradesModel } from '../models/grades.js';
+import { gradeModel } from '../models/grade.js';
 
 const app = express();
 

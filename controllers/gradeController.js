@@ -1,6 +1,6 @@
 //import { db } from '../models/index.js';
 import { logger } from '../config/logger.js';
-import { gradesModel } from '../models/grades.js';
+import { gradeModel } from '../models/grade.js';
 //import { app } from '../routes/gradeRouter.js';
 
 /**
@@ -8,8 +8,8 @@ import { gradesModel } from '../models/grades.js';
  */
 const create = async (req, res) => {
   try {
-    const grades = new gradesModel(req.body);
-    await grades.save();
+    const grade = new gradeModel(req.body);
+    await grade.save();
     res.send();
     logger.info(`POST /grade - ${JSON.stringify()}`);
   } catch (error) {
@@ -33,8 +33,8 @@ const findAll = async (req, res) => {
     : {};
 
   try {
-    const grades = await gradesModel.find({ condition });
-    res.send(name);
+    const grade = await gradeModel.find({ condition });
+    res.send(grade);
     logger.info(`GET /grade`);
   } catch (error) {
     res
@@ -51,8 +51,8 @@ const findOne = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const grades = await gradesModel.findOne({ _id: req.params.id });
-    res.send(grades);
+    const grade = await gradeModel.findOne({ _id: req.params.id });
+    res.send(grade);
 
     logger.info(`GET /grade - ${id}`);
   } catch (error) {
@@ -74,7 +74,7 @@ const update = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const grades = await gradesModel.findByIdAndUpdate(
+    const grade = await gradeModel.findByIdAndUpdate(
       { _id: req.params.id },
       req.body,
       { new: true }
@@ -95,8 +95,8 @@ const remove = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const grades = await gradesModel.findByIdAndDelete({ _id: req.params.id });
-    if (!grades) {
+    const grade = await gradeModel.findByIdAndDelete({ _id: req.params.id });
+    if (!grade) {
       res.status(404).send('Documento não encontrado na seleção.');
     }
     res.send({ message: 'Grade excluido com sucesso' });
@@ -117,7 +117,7 @@ const removeAll = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const grades = await gradesModel.remove({});
+    const grade = await gradeModel.remove({});
 
     res.send({
       message: `Grades excluidos`,
