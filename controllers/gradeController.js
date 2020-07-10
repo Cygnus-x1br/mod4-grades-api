@@ -8,7 +8,7 @@ import { logger } from '../config/logger.js';
 //import { Grade } from '../models/gradeModel.js';
 //import { app } from '../routes/gradeRouter.js';
 
-const Grades = db.grade;
+const Grade = db.grade;
 /**
  * *Post create funcionando
  */
