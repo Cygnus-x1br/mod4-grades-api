@@ -1,14 +1,20 @@
-//import { db } from '../models/index.js';
+import { db } from '../models/index.js';
 import { logger } from '../config/logger.js';
-import { gradeModel } from '../models/grade.js';
+
+/**
+ * !No exemplo da aula não foi feito o import do modelo Grade, mas sim criada a
+ * !cont Grade atribuida ao db.grade.
+ */
+import { Grade } from '../models/gradeModel.js';
 //import { app } from '../routes/gradeRouter.js';
 
+const Grade = db.grade;
 /**
  * *Post create funcionando
  */
 const create = async (req, res) => {
   try {
-    const grade = new gradeModel(req.body);
+    const grade = new Grade(req.body);
     await grade.save();
     res.send();
     logger.info(`POST /grade - ${JSON.stringify()}`);
@@ -33,7 +39,7 @@ const findAll = async (req, res) => {
     : {};
 
   try {
-    const grade = await gradeModel.find(condition);
+    const grade = await Grade.find(condition);
     res.send(grade);
     logger.info(`GET /grade`);
   } catch (error) {
@@ -51,7 +57,7 @@ const findOne = async (req, res) => {
   const _id = req.params.id;
 
   try {
-    const grade = await gradeModel.findOne({ _id: req.params.id });
+    const grade = await Grade.findById({ _id: req.params.id });
     res.send(grade);
 
     logger.info(`GET /grade - ${id}`);
@@ -74,7 +80,7 @@ const update = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const grade = await gradeModel.findByIdAndUpdate(
+    const grade = await Grade.findByIdAndUpdate(
       { _id: req.params.id },
       req.body,
       { new: true }
@@ -95,7 +101,7 @@ const remove = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const grade = await gradeModel.findByIdAndDelete({ _id: req.params.id });
+    const grade = await Grade.findByIdAndDelete({ _id: req.params.id });
     if (!grade) {
       res.status(404).send('Documento não encontrado na seleção.');
     }
@@ -117,7 +123,7 @@ const removeAll = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const grade = await gradeModel.remove({});
+    const grade = await Grade.remove({});
 
     res.send({
       message: `Grades excluidos`,
