@@ -71,12 +71,13 @@ const findOne = async (req, res) => {
  * *Put update funcionando
  */
 const update = async (req, res) => {
+  /*
   if (!req.body) {
     return res.status(400).send({
       message: 'Dados para atualizacao vazio',
     });
   }
-
+  */
   const id = req.params.id;
 
   try {
