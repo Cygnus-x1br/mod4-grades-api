@@ -13,9 +13,15 @@ const Grade = db.grade;
  * *Post create funcionando
  */
 const create = async (req, res) => {
+  //const grade = new Grade(req.body);
+  const grade = new Grade({
+    name: req.body.name,
+    subject: req.body.subject,
+    type: req.body.type,
+    value: req.body.value,
+  });
   try {
-    const grade = new Grade(req.body);
-    await grade.save();
+    await grade.save(grade);
     res.send(grade);
     logger.info(`POST /grade - ${JSON.stringify()}`);
   } catch (error) {
@@ -57,8 +63,14 @@ const findOne = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const grade = await Grade.findById({ _id: req.params.id });
-    res.send(grade);
+    //const grade = await Grade.findById({ _id: req.params.id });
+    const grade = await Grade.findById({ _id: id });
+
+    if (!grade) {
+      res.send({ message: 'Dados nao encontrados' });
+    } else {
+      res.send(grade);
+    }
 
     logger.info(`GET /grade - ${id}`);
   } catch (error) {
@@ -71,23 +83,23 @@ const findOne = async (req, res) => {
  * *Put update funcionando
  */
 const update = async (req, res) => {
-  /*
-   */
+  if (!req.body) {
+    return res.status(400).send({
+      message: 'Dados para atualizacao vazio',
+    });
+  }
+
   const id = req.params.id;
 
   try {
     const grade = await Grade.findByIdAndUpdate(
-      { _id: req.params.id },
+      //{ _id: req.params.id },
+      { _id: id },
       req.body,
       { new: true }
     );
-    if (!req.body) {
-      return res.status(400).send({
-        message: 'Dados para atualizacao vazio',
-      });
-    } else {
-      res.send({ message: 'Grade atualizado com sucesso' });
-    }
+    res.send({ message: 'Grade atualizado com sucesso' });
+
     logger.info(`PUT /grade - ${id} - ${JSON.stringify(req.body)}`);
   } catch (error) {
     res.status(500).send({ message: 'Erro ao atualizar a Grade id: ' + id });
@@ -102,7 +114,7 @@ const remove = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const grade = await Grade.findByIdAndDelete({ _id: req.params.id });
+    const grade = await Grade.findByIdAndDelete({ _id: id });
     if (!grade) {
       res.status(404).send({ message: 'Documento não encontrado na seleção.' });
     } else {
