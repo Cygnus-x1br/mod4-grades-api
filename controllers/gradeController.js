@@ -65,7 +65,7 @@ const findOne = async (req, res) => {
   try {
     //const grade = await Grade.findById({ _id: req.params.id });
     const grade = await Grade.findById({ _id: id });
-
+    console.log(id);
     if (!grade) {
       res.send({ message: 'Dados nao encontrados' });
     } else {
@@ -90,6 +90,7 @@ const update = async (req, res) => {
   }
 
   const id = req.params.id;
+  console.log(id);
 
   try {
     const grade = await Grade.findByIdAndUpdate(
@@ -115,6 +116,7 @@ const remove = async (req, res) => {
 
   try {
     const grade = await Grade.findByIdAndDelete({ _id: id });
+    console.log(id);
     if (!grade) {
       res.status(404).send({ message: 'Documento não encontrado na seleção.' });
     } else {
