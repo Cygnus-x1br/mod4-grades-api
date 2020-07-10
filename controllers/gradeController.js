@@ -5,7 +5,7 @@ import { logger } from '../config/logger.js';
  * !No exemplo da aula não foi feito o import do modelo Grade, mas sim criada a
  * !cont Grade atribuida ao db.grade.
  */
-import { Grade } from '../models/gradeModel.js';
+//import { Grade } from '../models/gradeModel.js';
 //import { app } from '../routes/gradeRouter.js';
 
 const Grade = db.grade;
