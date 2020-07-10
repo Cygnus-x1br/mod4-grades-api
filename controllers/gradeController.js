@@ -33,7 +33,7 @@ const findAll = async (req, res) => {
     : {};
 
   try {
-    const grade = await gradeModel.find({});
+    const grade = await gradeModel.find(condition);
     res.send(grade);
     logger.info(`GET /grade`);
   } catch (error) {
@@ -48,7 +48,7 @@ const findAll = async (req, res) => {
  */
 
 const findOne = async (req, res) => {
-  const id = req.params.id;
+  const _id = req.params.id;
 
   try {
     const grade = await gradeModel.findOne({ _id: req.params.id });
