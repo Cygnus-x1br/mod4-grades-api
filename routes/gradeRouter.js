@@ -1,15 +1,15 @@
 import express from 'express';
-import Grade from '../controllers/gradeController.js';
+import Grades from '../controllers/gradeController.js';
 //import { Grade } from '../models/gradeModel.js';
 
 const app = express();
 
-app.post('/grade/', Grade.create);
-app.get('/grade/', Grade.findAll);
-app.get('/grade/:id', Grade.findOne);
-app.put('/grade/:id', Grade.update);
-app.delete('/grade/:id', Grade.remove);
-app.delete('/grade/', Grade.removeAll);
+app.post('/grade/', Grades.create);
+app.get('/grade/', Grades.findAll);
+app.get('/grade/:id', Grades.findOne);
+app.put('/grade/:id', Grades.update);
+app.delete('/grade/:id', Grades.remove);
+app.delete('/grade/', Grades.removeAll);
 
 export { app as gradeRouter };
 //Substituido controller por Grade
