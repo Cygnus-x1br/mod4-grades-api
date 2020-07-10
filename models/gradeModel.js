@@ -43,6 +43,6 @@ export default (mongoose) => {
 no plural. Para forçar a coleção student precisamos colocar o segundo student no model*/
   //const gradeModel = mongoose.model('grade', gradeSchema, 'grade');
   const Grade = mongoose.model('grade', gradeSchema, 'grade');
+  return Grade;
 };
 //export { gradeModel };
-return Grade;
