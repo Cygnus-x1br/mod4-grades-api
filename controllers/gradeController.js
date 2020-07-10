@@ -54,7 +54,7 @@ const findAll = async (req, res) => {
  */
 
 const findOne = async (req, res) => {
-  const _id = req.params.id;
+  const id = req.params.id;
 
   try {
     const grade = await Grade.findById({ _id: req.params.id });
@@ -72,12 +72,7 @@ const findOne = async (req, res) => {
  */
 const update = async (req, res) => {
   /*
-  if (!req.body) {
-    return res.status(400).send({
-      message: 'Dados para atualizacao vazio',
-    });
-  }
-  */
+   */
   const id = req.params.id;
 
   try {
@@ -86,8 +81,13 @@ const update = async (req, res) => {
       req.body,
       { new: true }
     );
-    res.send({ message: 'Grade atualizado com sucesso' });
-
+    if (!req.body) {
+      return res.status(400).send({
+        message: 'Dados para atualizacao vazio',
+      });
+    } else {
+      res.send({ message: 'Grade atualizado com sucesso' });
+    }
     logger.info(`PUT /grade - ${id} - ${JSON.stringify(req.body)}`);
   } catch (error) {
     res.status(500).send({ message: 'Erro ao atualizar a Grade id: ' + id });
