@@ -38,6 +38,11 @@ export default (mongoose) => {
       default: Date.now,
     },
   });
+  schema.method('toJSON', function () {
+    const { __V, _id, ...object } = this.toObject();
+    object.id = _id;
+    return object;
+  });
 
   /*Define o modelo da coleção. O mongoose por padrão cria uma coleção com student
 no plural. Para forçar a coleção student precisamos colocar o segundo student no model*/

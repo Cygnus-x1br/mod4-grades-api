@@ -121,7 +121,7 @@ const remove = async (req, res) => {
     if (!data) {
       res.status(404).send({ message: 'Documento não encontrado na seleção.' });
     } else {
-      //res.send({ message: 'Grade excluido com sucesso' });
+      res.send({ message: 'Grade excluido com sucesso' });
     }
     logger.info(`DELETE /grade - ${id}`);
   } catch (error) {
@@ -139,7 +139,7 @@ const removeAll = async (req, res) => {
   //const id = req.params.id;
 
   try {
-    const data = await Grade.remove({});
+    const grade = await Grade.remove({});
 
     res.send({
       message: `Grades excluidos`,
