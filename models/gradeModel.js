@@ -38,7 +38,7 @@ export default (mongoose) => {
       default: Date.now,
     },
   });
-  schema.method('toJSON', function () {
+  gradeSchema.method('toJSON', function () {
     const { __V, _id, ...object } = this.toObject();
     object.id = _id;
     return object;
