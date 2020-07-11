@@ -45,8 +45,8 @@ const findAll = async (req, res) => {
     : {};
 
   try {
-    const grade = await Grade.find(condition);
-    res.send(grade);
+    const data = await Grade.find(condition);
+    res.send(data);
     logger.info(`GET /grade`);
   } catch (error) {
     res
@@ -64,12 +64,12 @@ const findOne = async (req, res) => {
 
   try {
     //const grade = await Grade.findById({ _id: req.params.id });
-    const grade = await Grade.findById({ _id: id });
+    const data = await Grade.findById({ _id: id });
     console.log(id);
-    if (!grade) {
+    if (!data) {
       res.send({ message: 'Dados nao encontrados' });
     } else {
-      res.send(grade);
+      res.send(data);
     }
 
     logger.info(`GET /grade - ${id}`);
@@ -93,13 +93,14 @@ const update = async (req, res) => {
   console.log(id);
 
   try {
-    const grade = await Grade.findByIdAndUpdate(
+    const data = await Grade.findByIdAndUpdate(
       //{ _id: req.params.id },
       { _id: id },
       req.body,
       { new: true }
     );
-    res.send({ message: 'Grade atualizado com sucesso' });
+    res.send(data);
+    //res.send({ message: 'Grade atualizado com sucesso' });
 
     logger.info(`PUT /grade - ${id} - ${JSON.stringify(req.body)}`);
   } catch (error) {
@@ -115,12 +116,12 @@ const remove = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const grade = await Grade.findByIdAndDelete({ _id: id });
+    const data = await Grade.findByIdAndDelete({ _id: id });
     console.log(id);
-    if (!grade) {
+    if (!data) {
       res.status(404).send({ message: 'Documento não encontrado na seleção.' });
     } else {
-      res.send({ message: 'Grade excluido com sucesso' });
+      //res.send({ message: 'Grade excluido com sucesso' });
     }
     logger.info(`DELETE /grade - ${id}`);
   } catch (error) {
@@ -138,7 +139,7 @@ const removeAll = async (req, res) => {
   //const id = req.params.id;
 
   try {
-    const grade = await Grade.remove({});
+    const data = await Grade.remove({});
 
     res.send({
       message: `Grades excluidos`,
